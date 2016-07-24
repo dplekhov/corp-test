@@ -1,0 +1,26 @@
+AppBundle\Entity\Category:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\CategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+#        parentCategoryId:
+#            type: integer
+#            column: parent_category_id
+        title:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
+    oneToMany:
+        children:
+          targetEntity: Category
+          mappedBy: parent
+    manyToOne:
+        parent:
+          targetEntity: Category
+          inversedBy: children

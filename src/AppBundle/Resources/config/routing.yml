@@ -1,0 +1,12 @@
+app_category:
+    resource: "@AppBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+app_product:
+    resource: "@AppBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+app_city:
+    resource: "@AppBundle/Resources/config/routing/city.yml"
+    prefix:   /city
+app_value:
+    resource: "@AppBundle/Resources/config/routing/value.yml"
+    prefix:   /value

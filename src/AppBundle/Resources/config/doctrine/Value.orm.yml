@@ -1,0 +1,28 @@
+AppBundle\Entity\Value:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ValueRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        quantity:
+            type: integer
+            column: quantity
+    lifecycleCallbacks: {  }
+    manyToOne:
+        city:
+            targetEntity: City
+            inversedBy: values
+            joinColumn:
+                name: city_id
+                referencedColumnName: id
+        product:
+              targetEntity: Product
+              inversedBy: values
+              joinColumn:
+                name: product_id
+                referencedColumnName: id

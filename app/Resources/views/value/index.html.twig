@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Value list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for value in values %}
+            <tr>
+                <td><a href="{{ path('value_show', { 'id': value.id }) }}">{{ value.id }}</a></td>
+                <td>{{ value.quantity }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('value_show', { 'id': value.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('value_edit', { 'id': value.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('value_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

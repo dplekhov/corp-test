@@ -1,0 +1,24 @@
+value_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Value:index" }
+    methods:  GET
+
+value_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Value:show" }
+    methods:  GET
+
+value_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Value:new" }
+    methods:  [GET, POST]
+
+value_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Value:edit" }
+    methods:  [GET, POST]
+
+value_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Value:delete" }
+    methods:  DELETE
