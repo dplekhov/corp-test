@@ -129,11 +129,7 @@ class Category
      */
     public function setParent(Category $category)
     {
-        if ($category instanceof Category) {
-            $this->parent = $category;
-        } else {
-            $this->parent = null;
-        }
+        $this->parent = $category;
 
         return $this;
     }
