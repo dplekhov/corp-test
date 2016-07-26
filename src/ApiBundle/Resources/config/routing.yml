@@ -1,0 +1,5 @@
+api_menu:
+    type: rest
+    prefix: /v1
+    resource: "ApiBundle\Controller\MenuController"
+    name_prefix:  api_1_ # naming collision
