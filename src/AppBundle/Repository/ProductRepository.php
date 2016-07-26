@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
+    public function findRelatedProductByCategoryId($categoryId)
+    {
+        $count = $this->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $this->createQueryBuilder('u')
+            ->where('u.category = :category')
+            ->setFirstResult(rand(0, $count - 1))
+            ->setMaxResults(1)
+            ->setParameter('category', $categoryId)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

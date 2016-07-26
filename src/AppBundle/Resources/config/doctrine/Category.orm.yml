@@ -9,9 +9,6 @@ AppBundle\Entity\Category:
             generator:
                 strategy: AUTO
     fields:
-#        parentCategoryId:
-#            type: integer
-#            column: parent_category_id
         title:
             type: string
             length: 255

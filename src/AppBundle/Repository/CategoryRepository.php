@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    public function findAllParentCategories()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p FROM AppBundle:Category p WHERE p.parent is NULL'
+            )
+            ->getResult();
+    }
 }

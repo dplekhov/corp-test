@@ -3,9 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+
 
 /**
  * Category
+ * @Serializer\AccessorOrder("custom", custom = {"id", "title" ,"children", "RelatedProduct"})
  */
 class Category
 {
@@ -22,6 +25,7 @@ class Category
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * @Serializer\Exclude()
      */
     private $parent;
 
@@ -29,6 +33,8 @@ class Category
      * @var string
      */
     private $title;
+
+    private $relatedProduct;
 
     public function __construct() {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
@@ -123,9 +129,31 @@ class Category
      */
     public function setParent(Category $category)
     {
-        $this->parent = $category;
+        if ($category instanceof Category) {
+            $this->parent = $category;
+        } else {
+            $this->parent = null;
+        }
 
         return $this;
     }
 
+    /**
+     * @Serializer\VirtualProperty
+     * @Serializer\SerializedName("relatedProduct")
+     *
+     * @return integer
+     */
+    public function getRelatedProduct()
+    {
+        return $this->relatedProduct;
+    }
+
+    /**
+     * @param mixed $relatedProduct
+     */
+    public function setRelatedProduct($relatedProduct)
+    {
+        $this->relatedProduct = $relatedProduct;
+    }
 }
