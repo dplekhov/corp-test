@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
-    public function findRelatedProductByCategoryId($categoryId)
+    public function findRelatedProduct($categoryId, $cityId)
     {
         $count = $this->createQueryBuilder('u')
             ->select('COUNT(u)')
@@ -20,11 +20,15 @@ class ProductRepository extends EntityRepository
             ->getSingleScalarResult();
 
         return $this->createQueryBuilder('u')
+            ->join('AppBundle:Value', 'v')
             ->where('u.category = :category')
+            ->andWhere('v.city = :city')
             ->setFirstResult(rand(0, $count - 1))
             ->setMaxResults(1)
             ->setParameter('category', $categoryId)
+            ->setParameter('city', $cityId)
             ->getQuery()
+//            ->getSQL();
             ->getOneOrNullResult();
     }
 }

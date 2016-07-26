@@ -13,6 +13,29 @@
                 <th>Title</th>
                 <td>{{ category.title }}</td>
             </tr>
+            <tr>
+                <th>Children</th>
+                <td>
+                    {% if category.children is iterable %}
+                        <ul>
+                        {% for cat in category.children %}
+                                <li>
+                                    {{ cat.title }}
+                                </li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Parent</th>
+                <td>
+                    {% if category.parent is defined %}
+                        {{ category.parent }}
+                    {% endif %}
+                </td>
+            </tr>
+
         </tbody>
     </table>
 

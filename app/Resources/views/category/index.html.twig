@@ -3,11 +3,13 @@
 {% block body %}
     <h1>Category list</h1>
 
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Title</th>
+                <th>Children</th>
+                <th>Parent</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,6 +18,22 @@
             <tr>
                 <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
                 <td>{{ category.title }}</td>
+                <td>
+                    {% if category.children is iterable %}
+                        <ul>
+                            {% for cat in category.children %}
+                                <li>
+                                    {{ cat.title }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if category.parent is defined %}
+                        {{ category.parent }}
+                    {% endif %}
+                </td>
                 <td>
                     <ul>
                         <li>

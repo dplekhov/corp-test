@@ -13,8 +13,11 @@ class MenuController extends Controller
 {
     /**
      * @Rest\View
+     * @Rest\QueryParam(name="city", requirements="\d+", default="1")
+     *
+     * @param string $city
      */
-    public function getMenuAction()
+    public function getMenuAction($city)
     {
         $categoriesRepository = $this->get('doctrine')->getRepository('AppBundle:Category');
         $productRepository = $this->get('doctrine')->getRepository('AppBundle:Product');
@@ -22,8 +25,8 @@ class MenuController extends Controller
         $allParentCategories = $categoriesRepository->findAllParentCategories();
 
         foreach ($allParentCategories as $category) {
-           $relatedProduct = $productRepository->findRelatedProductByCategoryId(
-               $category->getId()
+           $relatedProduct = $productRepository->findRelatedProduct(
+               $category->getId(), $city
            );
            if ($relatedProduct instanceof Product) {
                $category->setRelatedProduct($relatedProduct->getId());
