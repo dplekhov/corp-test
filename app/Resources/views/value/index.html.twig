@@ -2,12 +2,14 @@
 
 {% block body %}
     <h1>Value list</h1>
-
-    <table>
+    <li><a href="{{ path('homepage') }}">Главная</a> </li>
+    <table border="1">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Quantity</th>
+                <th>City</th>
+                <th>Product</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,6 +18,8 @@
             <tr>
                 <td><a href="{{ path('value_show', { 'id': value.id }) }}">{{ value.id }}</a></td>
                 <td>{{ value.quantity }}</td>
+                <td>{{ value.city }}</td>
+                <td>{{ value.product }}</td>
                 <td>
                     <ul>
                         <li>

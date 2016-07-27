@@ -1,0 +1,21 @@
+{
+  "name": "workspace",
+  "homepage": "https://github.com/dplekhov/corp-test",
+  "authors": [
+    "dplekhov <233833@mail.ru>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
